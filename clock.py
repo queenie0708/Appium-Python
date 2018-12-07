@@ -47,7 +47,6 @@ class Test(unittest.TestCase):
         minute = self.driver.find_element_by_id('android:id/input_minute')
         print (minute.text)
         print (int(minute.text)+2)
-        
         setMinute = int(minute.text)+2
         print (setMinute)
         minute.clear()
@@ -56,9 +55,19 @@ class Test(unittest.TestCase):
         print ('now minute' + str(setMinute))
         self.driver.find_element_by_android_uiautomator('text(\"OK")').click()
         print ('alarm added')
-        time.sleep(100)
-        self.driver.find_element_by_class_name("android.widget.Switch").click()
-        print ('dismissed')
+        time.sleep(40)
+        self.driver.lock()
+        print('screen locked')
+        self.driver.find_element_by_id("com.google.android.deskclock:id/dismiss").click()
+        driver.implicitly_wait(5000)
+        # while tryTime < maxTry:
+        #   if dismiss == true:
+        #      dissmiss.click()
+        #      print ('dismissed')
+        #      break
+        #   else:
+        #      print( tryTime + 'waiting for alarm ring')
+
 
 
     def tearDown(self):
